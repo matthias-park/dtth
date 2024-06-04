@@ -2,8 +2,8 @@ const path = {
     home() {
         return '/'
     },
-    demonShow(demonId: string) {
-        return `/demonds/${demonId}`
+    demonShow(id: string) {
+        return `/demonds/${id}`
     },
     shopShow() {
         return'/shop'
