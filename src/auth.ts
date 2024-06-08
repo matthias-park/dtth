@@ -44,5 +44,8 @@ export const {
       return session;
     },
   },
+  pages: {
+    error: 'authError', // Error code passed in query string as ?error=
+  },
   debug: true,
 });
