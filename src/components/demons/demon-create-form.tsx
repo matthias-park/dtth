@@ -18,11 +18,12 @@ export default function DemonCreateForm() {
         <form action={actions.createDemon}>
           <div className="flex flex-col gap-4 p-4 w-80">
             <h3 className="text-lg">Create a Demon</h3>
-            <Input label="Name" labelPlacement="outside" placeholder="Name" />
+            <Input name="name" label="Name" labelPlacement="outside" placeholder="Name" />
             <Textarea
-              label="Description"
+              name="comment"
+              label="Comment"
               labelPlacement="outside"
-              placeholder="Describe your demon"
+              placeholder="Comment on your demon"
             />
             <Button type="submit">Submit</Button>
           </div>
