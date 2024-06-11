@@ -12,7 +12,7 @@ const createDemonSchema = z.object({
   comment: z.string().min(10),
 });
 
-export async function createDemon(formData: FormData) {
+export async function createDemon(formState: number,formData: FormData) {
   const result = createDemonSchema.safeParse({
     url: formData.get("url"),
     comment: formData.get("comment"),
@@ -21,5 +21,7 @@ export async function createDemon(formData: FormData) {
   if (!result.success) {
     console.log(result.error.flatten().fieldErrors);
   }
+
+  return 10;
   //TODO revalidate Home Page
 }
