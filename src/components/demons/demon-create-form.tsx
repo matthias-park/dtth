@@ -12,7 +12,9 @@ import {
 import * as actions from '@/actions';
 
 export default function DemonCreateForm() {
-  const [formState, action] = useFormState(actions.createDemon, 5);
+  const [formState, action] = useFormState(actions.createDemon, {
+    errors: {}
+  });
   return (
     <Popover placement="left">
       <PopoverTrigger>

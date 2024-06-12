@@ -1,27 +1,39 @@
 "use server";
 import { z } from "zod";
 
-const linkedinUrlPattern = /^(https?:\/\/)?(www\.)?linkedin\.com\/(in)\/[A-z0-9_-]+\/?$/;
+const linkedinUrlPattern =
+  /^(https?:\/\/)?(www\.)?linkedin\.com\/(in)\/[A-z0-9_-]+\/?$/;
 const createDemonSchema = z.object({
-  url: z
-    .string()
-    .min(3)
-    .regex(linkedinUrlPattern, {
-      message: "Must be LinkedIn URL Format",
-    }),
+  url: z.string().min(3).regex(linkedinUrlPattern, {
+    message: "Must be LinkedIn URL Format",
+  }),
   comment: z.string().min(10),
 });
 
-export async function createDemon(formState: number,formData: FormData) {
+interface CreateDemonFormState {
+  errors: {
+    url?: string[];
+    comment?: string[];
+  };
+}
+
+export async function createDemon(
+  formState: CreateDemonFormState,
+  formData: FormData
+): Promise<CreateDemonFormState> {
   const result = createDemonSchema.safeParse({
     url: formData.get("url"),
     comment: formData.get("comment"),
   });
 
   if (!result.success) {
-    console.log(result.error.flatten().fieldErrors);
+    return {
+      errors: result.error.flatten().fieldErrors
+    }
   }
 
-  return 10;
+  return {
+    errors: {}
+  };
   //TODO revalidate Home Page
 }
