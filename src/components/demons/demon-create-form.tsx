@@ -30,7 +30,7 @@ export default function DemonCreateForm() {
               labelPlacement="outside"
               placeholder="Their URL"
               isInvalid={!!formState.errors.url}
-              errorMessage={formState.errors.url?.join(', ')}
+              errorMessage={formState.errors.url?.join(", ")}
             />
             <Textarea
               name="comment"
@@ -38,8 +38,14 @@ export default function DemonCreateForm() {
               labelPlacement="outside"
               placeholder="Comment on your demon"
               isInvalid={!!formState.errors.comment}
-              errorMessage={formState.errors.comment?.join(', ')}
+              errorMessage={formState.errors.comment?.join(", ")}
             />
+
+            {formState.errors._form ? (
+              <div className="rounded p-2 bg-red-200 border border-red-400">
+                {formState.errors._form?.join(", ")}
+              </div>
+            ) : null}
             <Button type="submit">Submit</Button>
           </div>
         </form>
