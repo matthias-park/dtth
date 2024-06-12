@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useFormState } from "react-dom";
 import {
@@ -9,11 +9,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@nextui-org/react";
-import * as actions from '@/actions';
+import * as actions from "@/actions";
 
 export default function DemonCreateForm() {
   const [formState, action] = useFormState(actions.createDemon, {
-    errors: {}
+    errors: {},
   });
   return (
     <Popover placement="left">
@@ -24,12 +24,21 @@ export default function DemonCreateForm() {
         <form action={action}>
           <div className="flex flex-col gap-4 p-4 w-80">
             <h3 className="text-lg">Create a Demon</h3>
-            <Input name="url" label="URL" labelPlacement="outside" placeholder="Their URL" />
+            <Input
+              name="url"
+              label="URL"
+              labelPlacement="outside"
+              placeholder="Their URL"
+              isInvalid={!!formState.errors.url}
+              errorMessage={formState.errors.url?.join(', ')}
+            />
             <Textarea
               name="comment"
               label="Comment"
               labelPlacement="outside"
               placeholder="Comment on your demon"
+              isInvalid={!!formState.errors.comment}
+              errorMessage={formState.errors.comment?.join(', ')}
             />
             <Button type="submit">Submit</Button>
           </div>
