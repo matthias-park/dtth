@@ -10,23 +10,29 @@ import path from '@/path';
 const linkedinUrlPattern =
   /^(https?:\/\/)?(www\.)?linkedin\.com\/(in)\/[A-z0-9_-]+\/?$/;
 const createDemonSchema = z.object({
+  name: z.string().min(3),
   url: z.string().min(3).regex(linkedinUrlPattern, {
     message: "Must be LinkedIn URL Format",
   }),
 });
 
-interface CreateDemonFormState {
+interface CreateUserFormState {
   errors: {
+    name?: string[];
     url?: string[];
     _form?: string[];
   };
 }
 
-export async function createDemon(
-  formState: CreateDemonFormState,
+export async function createUser(
+  formState: CreateUserFormState,
   formData: FormData
-): Promise<CreateDemonFormState> {
+): Promise<CreateUserFormState> {
+
+  await new Promise(resolve => setTimeout(resolve, 2500));
+
   const result = createDemonSchema.safeParse({
+    name: formData.get('name'),
     url: formData.get("url"),
   });
 
@@ -49,6 +55,7 @@ export async function createDemon(
   try {
     user = await db.user.create({
       data: {
+        name: result.data.name,
         currentUrl: result.data.url,
         reputation: -1,
       }

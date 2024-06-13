@@ -10,9 +10,10 @@ import {
   PopoverTrigger,
 } from "@nextui-org/react";
 import * as actions from "@/actions";
+import FormButton from "../common/form-button";
 
-export default function DemonCreateForm() {
-  const [formState, action] = useFormState(actions.createDemon, {
+export default function UserCreateForm() {
+  const [formState, action] = useFormState(actions.createUser, {
     errors: {},
   });
   return (
@@ -24,6 +25,14 @@ export default function DemonCreateForm() {
         <form action={action}>
           <div className="flex flex-col gap-4 p-4 w-80">
             <h3 className="text-lg">Create a Demon</h3>
+            <Input
+              name="name"
+              label="Name"
+              labelPlacement="outside"
+              placeholder="Their Name"
+              isInvalid={!!formState.errors.url}
+              errorMessage={formState.errors.url?.join(", ")}
+            />
             <Input
               name="url"
               label="URL"
@@ -38,7 +47,9 @@ export default function DemonCreateForm() {
                 {formState.errors._form?.join(", ")}
               </div>
             ) : null}
-            <Button type="submit">Submit</Button>
+            <FormButton>
+              Save
+            </FormButton>
           </div>
         </form>
       </PopoverContent>
