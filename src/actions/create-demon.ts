@@ -1,5 +1,5 @@
 "use server";
-import type {User} from '@prisma/client';
+import type {Demon} from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from "zod";
@@ -16,7 +16,7 @@ const createDemonSchema = z.object({
   }),
 });
 
-interface CreateUserFormState {
+interface CreateDemonFormState {
   errors: {
     name?: string[];
     url?: string[];
@@ -25,9 +25,9 @@ interface CreateUserFormState {
 }
 
 export async function createUser(
-  formState: CreateUserFormState,
+  formState: CreateDemonFormState,
   formData: FormData
-): Promise<CreateUserFormState> {
+): Promise<CreateDemonFormState> {
 
   const result = createDemonSchema.safeParse({
     name: formData.get('name'),
@@ -49,13 +49,15 @@ export async function createUser(
     }
   }
 
-  let user: User;
+  let demon: Demon;
   try {
-    user = await db.user.create({
+    demon = await db.demon.create({
       data: {
+        url: result.data.url,
         name: result.data.name,
-        currentUrl: result.data.url,
+        title: "Imp",
         reputation: -1,
+        userId: session.user?.id || ''
       }
     })
   } catch (err: unknown) {
@@ -74,9 +76,9 @@ export async function createUser(
     }
   }
 
-  if(user.currentUrl) {
+  if(demon.url) {
     revalidatePath('/');
-    redirect(path.userShow(user.currentUrl));
+    redirect(path.demonShow(demon.url));
   }
   
 

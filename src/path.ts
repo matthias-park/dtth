@@ -2,7 +2,7 @@ const path = {
     home() {
         return '/'
     },
-    userShow(url: string) {
+    demonShow(url: string) {
         return `/demonds/${url}`
     },
     shopShow() {

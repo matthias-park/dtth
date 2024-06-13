@@ -12,7 +12,7 @@ import {
 import * as actions from "@/actions";
 import FormButton from "../common/form-button";
 
-export default function UserCreateForm() {
+export default function DemonCreateForm() {
   const [formState, action] = useFormState(actions.createUser, {
     errors: {},
   });

@@ -1,4 +1,4 @@
-import UserCreateForm from '@/components/users/user-create-form'
+import DemonCreateForm from '@/components/demons/demon-create-form'
 
 export default function Home() {
 
@@ -7,7 +7,7 @@ export default function Home() {
       <h1 className="text-xl m-2">Top Demonds</h1>
     </div>
     <div>
-      <UserCreateForm />
+      <DemonCreateForm />
     </div>
   </div>
 }
