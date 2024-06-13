@@ -1,4 +1,4 @@
-import DemonCreateForm from "@/components/demons/demon-create-form"
+import DemonCreateForm from "@/components/users/demon-create-form"
 
 export default function Home() {
 

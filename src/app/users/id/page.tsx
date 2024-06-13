@@ -1,3 +1,3 @@
 export default function DemonShowPage() {
-    return <div>Demon Show Page</div>
+    return <div>user Show Page</div>
 }
