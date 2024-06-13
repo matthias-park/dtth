@@ -29,8 +29,6 @@ export async function createUser(
   formData: FormData
 ): Promise<CreateUserFormState> {
 
-  await new Promise(resolve => setTimeout(resolve, 2500));
-
   const result = createDemonSchema.safeParse({
     name: formData.get('name'),
     url: formData.get("url"),
