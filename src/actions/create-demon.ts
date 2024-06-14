@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from '@/db';
-import path from '@/path';
+import paths from '@/paths';
 
 const linkedinUrlPattern =
   /^(https?:\/\/)?(www\.)?linkedin\.com\/(in)\/[A-z0-9_-]+\/?$/;
@@ -78,7 +78,7 @@ export async function createUser(
 
   if(demon.url) {
     revalidatePath('/');
-    redirect(path.demonShow(demon.url));
+    redirect(paths.demonShow(demon.url));
   }
   
 
