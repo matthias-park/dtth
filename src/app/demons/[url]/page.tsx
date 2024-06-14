@@ -6,20 +6,19 @@ import paths from "@/paths";
 
 interface PostShowPageProps {
   params: {
-    slug: string;
-    postId: string;
+    url: string;
   };
 }
 
 export default async function DemonShowPage({ params }: PostShowPageProps) {
-  const { slug, postId } = params;
+  const { url } = params;
 
   return (
     <div className="space-y-3">
       <Link className="underline decoration-solid" href={paths.home()}>
-        {"< "}Back to {slug}
+        {"< "}Back to {url}
       </Link>
-      {/* <PostShow /> */}
+      <DemonShow url={url}/>
       {/* <CommentCreateForm postId={postId} startOpen /> */}
       {/* <CommentList comments={comments} /> */}
     </div>
